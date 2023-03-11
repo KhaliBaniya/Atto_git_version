@@ -6,14 +6,19 @@ import org.example.dto.Card;
 import org.example.enums.GeneralStatus;
 import org.example.enums.TransactionType;
 import org.example.repository.CardRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+@Service
 
 public class CardService {
+    @Autowired
     private TransactionService transactionService;
+    @Autowired
     private CardRepository cardRepository;
 
     public void addCardToProfile(String phone, String cardNum) {
@@ -170,11 +175,5 @@ public class CardService {
         transactionService.createTransaction(card.getId(), null, amount, TransactionType.ReFill);
     }
 
-    public void setTransactionService(TransactionService transactionService) {
-        this.transactionService = transactionService;
-    }
 
-    public void setCardRepository(CardRepository cardRepository) {
-        this.cardRepository = cardRepository;
-    }
 }

@@ -4,10 +4,14 @@ import org.example.container.ComponentContainer;
 import org.example.dto.Profile;
 import org.example.service.AuthService;
 import org.example.util.ScannerUtil;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
 
 import java.util.Scanner;
-
+@Controller
 public class AuthController {
+    @Autowired
     private AuthService authService;
 
     public void start() {
@@ -72,7 +76,9 @@ public class AuthController {
         authService.registration(profile);
     }
 
-    public void setAuthService(AuthService authService) {
-        this.authService = authService;
+
+    public void  init(){
+        System.out.println("auth controller after initialize");
+
     }
 }

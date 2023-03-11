@@ -9,21 +9,32 @@ import org.example.enums.GeneralStatus;
 import org.example.enums.ProfileRole;
 import org.example.repository.ProfileRepository;
 import org.example.util.MD5Util;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
-
+@Component
 public class AuthService {
-    private ProfileRepository profileRepository;
+    @Autowired
+    private ProfileRepository profileR;
+    @Autowired
     private AdminController adminController;
+    @Autowired
     private ProfileController profileController;
 
     public AuthService() {
 
     }
 
+    public AuthService(ProfileRepository profileR, AdminController adminController, ProfileController profileController) {
+        this.profileR = profileR;
+        this.adminController = adminController;
+        this.profileController = profileController;
+    }
+
     public void login(String phone, String password) {
 
-        Profile profile = profileRepository.getProfileByPhoneAndPassword(phone, MD5Util.encode(password));
+        Profile profile = profileR.getProfileByPhoneAndPassword(phone, MD5Util.encode(password));
 
         if (profile == null) {
             System.out.println("Phone or Password incorrect");
@@ -45,9 +56,10 @@ public class AuthService {
         }
     }
 
+
     public void registration(Profile profile) {
         // check
-        Boolean exist = profileRepository.isPhoneExist(profile.getPhone()); // unique
+        Boolean exist = profileR.isPhoneExist(profile.getPhone()); // unique
         if (exist) {
             System.out.println(" Phone already exist.");
             return;
@@ -57,22 +69,12 @@ public class AuthService {
         profile.setCreatedDate(LocalDateTime.now());
         profile.setRole(ProfileRole.USER);
         profile.setPassword(MD5Util.encode(profile.getPassword()));
-        int result = profileRepository.saveProfile(profile);
+        int result = profileR.saveProfile(profile);
 
         if (result != 0) {
             System.out.println("Profile created.");
         }
     }
 
-    public void setProfileRepository(ProfileRepository profileRepository) {
-        this.profileRepository = profileRepository;
-    }
 
-    public void setAdminController(AdminController adminController) {
-        this.adminController = adminController;
-    }
-
-    public void setProfileController(ProfileController profileController) {
-        this.profileController = profileController;
-    }
 }

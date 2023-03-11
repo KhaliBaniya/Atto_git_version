@@ -6,12 +6,17 @@ import org.example.service.CardService;
 import org.example.service.ProfileService;
 import org.example.service.TerminalService;
 import org.example.util.ScannerUtil;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 
 import java.util.Scanner;
-
+@Controller
 public class AdminController {
+    @Autowired
     private ProfileService profileService;
+    @Autowired
     private TerminalService terminalService;
+    @Autowired
     private CardService cardService;
 
     public void start() {
@@ -270,15 +275,5 @@ public class AdminController {
 
     }
 
-    public void setProfileService(ProfileService profileService) {
-        this.profileService = profileService;
-    }
 
-    public void setTerminalService(TerminalService terminalService) {
-        this.terminalService = terminalService;
-    }
-
-    public void setCardService(CardService cardService) {
-        this.cardService = cardService;
-    }
 }

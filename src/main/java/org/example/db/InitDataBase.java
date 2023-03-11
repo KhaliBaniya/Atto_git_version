@@ -9,12 +9,16 @@ import org.example.enums.ProfileRole;
 import org.example.repository.CardRepository;
 import org.example.repository.ProfileRepository;
 import org.example.util.MD5Util;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-
+@Component
 public class InitDataBase {
+    @Autowired
     private ProfileRepository profileRepository;
+    @Autowired
     private CardRepository cardRepository;
 
     public  void adminInit() {
@@ -26,6 +30,7 @@ public class InitDataBase {
         profile.setPassword(MD5Util.encode("123"));
         profile.setCreatedDate(LocalDateTime.now());
         profile.setStatus(GeneralStatus.ACTIVE);
+
         profile.setRole(ProfileRole.ADMIN);
 
         Profile profile1 = profileRepository.getProfileByPhone(profile.getPhone());
@@ -53,11 +58,11 @@ public class InitDataBase {
         cardRepository.save(card);
     }
 
-    public void setProfileRepository(ProfileRepository profileRepository) {
-        this.profileRepository = profileRepository;
-    }
-
-    public void setCardRepository(CardRepository cardRepository) {
-        this.cardRepository = cardRepository;
-    }
+//    public void setProfileRepository(ProfileRepository profileRepository) {
+//        this.profileRepository = profileRepository;
+//    }
+//
+//    public void setCardRepository(CardRepository cardRepository) {
+//        this.cardRepository = cardRepository;
+//    }
 }

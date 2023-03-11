@@ -4,11 +4,14 @@ package org.example.service;
 import org.example.dto.Terminal;
 import org.example.enums.GeneralStatus;
 import org.example.repository.TerminalRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
-
+@Service
 public class TerminalService {
+    @Autowired
     private TerminalRepository terminalRepository;
 
     public void addTerminal(Terminal terminal) {
@@ -64,7 +67,4 @@ public class TerminalService {
         terminalRepository.deleteTerminal(code);
     }
 
-    public void setTerminalRepository(TerminalRepository terminalRepository) {
-        this.terminalRepository = terminalRepository;
-    }
 }

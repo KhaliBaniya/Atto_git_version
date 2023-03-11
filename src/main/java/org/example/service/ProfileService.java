@@ -6,11 +6,15 @@ import org.example.controller.AdminController;
 import org.example.dto.Profile;
 import org.example.enums.GeneralStatus;
 import org.example.repository.ProfileRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+@Service
 public class ProfileService {
+    @Autowired
     private ProfileRepository profileRepository;
+    @Autowired
     private AdminController adminController;
 
     public void profileList() {
@@ -34,11 +38,5 @@ public class ProfileService {
         }
     }
 
-    public void setProfileRepository(ProfileRepository profileRepository) {
-        this.profileRepository = profileRepository;
-    }
 
-    public void setAdminController(AdminController adminController) {
-        this.adminController = adminController;
-    }
 }
