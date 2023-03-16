@@ -2,12 +2,15 @@ package org.example.db;
 
 
 
+import org.springframework.stereotype.Component;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+
 public class DataBase {
     public static Connection getConnection() {
         try {

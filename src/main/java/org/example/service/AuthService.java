@@ -46,7 +46,7 @@ public class AuthService {
             return;
         }
 
-        ComponentContainer.currentProfile = profile;
+       /// ComponentContainer.currentProfile = profile;
         if (profile.getRole().equals(ProfileRole.ADMIN)) {
             adminController.start();
         } else if (profile.getRole().equals(ProfileRole.USER)) {
