@@ -4,10 +4,7 @@ package org.example.entity;
 import org.example.enums.GeneralStatus;
 import org.example.enums.ProfileRole;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 @Entity
 @Table(name = "profile")
@@ -15,6 +12,7 @@ import java.time.LocalDateTime;
 public class ProfileEntity {
 //    name,surname,phone unique,pswd,created_date,status,role
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
 
     private Integer id;
     private String name;

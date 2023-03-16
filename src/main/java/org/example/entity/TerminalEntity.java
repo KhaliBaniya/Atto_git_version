@@ -2,15 +2,14 @@ package org.example.entity;
 
 import org.example.enums.GeneralStatus;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 @Entity
 @Table(name = "terminal")
 public class TerminalEntity {
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+
     private Integer id;
     private String code;
     private String address;
